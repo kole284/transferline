@@ -1,0 +1,182 @@
+@use '../../utils/colors.scss' as colors;
+@use '../../utils/mediaqueries.scss' as *;
+
+@keyframes gradientText {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: colors.$black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/hero6/bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4% 0;
+
+  @media #{$phone} {
+    background-image: url('/assets/hero6/bg-p.svg');
+    padding: 5% 0;
+  }
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 3%;
+  border-radius: 12px;
+  color: colors.$white;
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  min-height: 100vh; /* da zauzme celu visinu */
+
+  @media #{$phone} {
+    text-align: center;
+    align-items: center;
+    padding: 5%;
+  }
+
+  .topSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    @media #{$phone} {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+      background: linear-gradient(270deg, colors.$yellow, colors.$white, colors.$yellow);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 5s ease infinite;
+      flex: 1;
+
+      @media #{$phone} {
+        font-size: 3rem;
+      }
+    }
+
+    .linkButton {
+      background-color: colors.$yellow;
+      color: colors.$black;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-family: 'Oswald';
+      font-weight: 600;
+      font-size: 2.5rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
+      align-self: center; /* sredjeno vertikalno */
+
+      &:hover {
+        background-color: darken(colors.$yellow, 10%);
+      }
+
+      @media #{$phone} {
+        font-size: 1.7rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+
+  p, ul {
+    font-size: 1.5rem;
+    line-height: 1.7;
+    margin: 0;
+
+    @media #{$phone} {
+      font-size: 1.3rem;
+    }
+  }
+
+  ul {
+    margin-left: 1.5rem;
+    padding-left: 1rem;
+    list-style-type: disc;
+
+    li {
+      margin-bottom: 0.6rem;
+
+      strong {
+        color: colors.$yellow;
+      }
+    }
+  }
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media #{$phone} {
+    align-items: center;
+  }
+}
+
+.linkButton {
+  align-self: flex-start;
+  background-color: colors.$yellow;
+  color: colors.$black;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-family: 'Oswald';
+  font-weight: 600;
+  font-size: 2.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-top: 2rem;
+
+  &:hover {
+    background-color: darken(colors.$yellow, 10%);
+  }
+
+  @media #{$phone} {
+    align-self: center;
+    font-size: 1.7rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+.phone {
+  color: colors.$yellow;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: darken(colors.$yellow, 10%);
+  }
+
+  @media #{$phone} {
+    font-size: 1.3rem;
+  }
+}
+

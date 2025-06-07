@@ -1,0 +1,141 @@
+@use '../../utils/colors.scss' as colors;
+@use '../../utils/mediaqueries.scss' as *;
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: #{colors.$black};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/hero2/bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  @media #{$phone}{
+    background-image:url('/assets/hero2/bg-p.svg');
+  }
+
+  & > * {
+    will-change: transform, opacity;
+  }
+  h1 {
+  font-family: 'Oswald';
+  font-size: 5rem;
+  font-weight: 400;
+  margin-bottom: 5%;
+  text-align: center;
+
+  background: linear-gradient(
+    90deg,
+    #FFF 0%,
+    #{colors.$yellow} 40%,
+    #FFF 80%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  animation: colorWave 3s linear infinite;
+
+  @media #{$phone} {
+    font-size: 3rem;
+  }
+}
+
+@keyframes colorWave {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+}
+
+.heading {
+  transition: none;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2%;
+  width: 80%; // ograniči širinu da ne bude preširoko
+
+  @media #{$phone} {
+    flex-direction: column;
+    width: 90%; // širi na skoro celu širinu na mobilnom
+    gap: 1.5rem; // veći razmak između kartica
+    align-items: center; // centriraj kartice vertikalno
+  }
+}
+
+.button {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 2rem; // razmak od kartica
+
+  @media #{$phone} {
+    width: 90%;
+    justify-content: center; // dugme u sredini na mobilnom
+    margin-top: 1.5rem;
+    margin-bottom:1rem;
+  }
+
+  .Link {
+    padding: 1.25rem 3rem;
+    font-family: 'Oswald';
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: white;
+    text-decoration:none;
+    background-color: #{colors.$yellow};
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom:1rem;
+
+    &:hover {
+      background-color: #{colors.$hover-yellow};
+    }
+
+    @media #{$phone} {
+      font-size: 2rem;
+      padding: 1rem 2.5rem;
+      width: 100%; // dugme da zauzme celu širinu kontejnera na mobilnom
+      text-align:center;
+      max-width: 400px; // i da ne bude preširoko
+    }
+  }
+}
+
+@keyframes slideDownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.visible {
+  animation: slideDownFadeIn 0.6s forwards;
+}
