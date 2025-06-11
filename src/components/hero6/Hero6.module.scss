@@ -1,5 +1,6 @@
 @use '../../utils/colors.scss' as colors;
 @use '../../utils/mediaqueries.scss' as *;
+@use 'sass:color';
 
 @keyframes gradientText {
   0% {
@@ -22,7 +23,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 4% 0;
-
+  
   @media #{$phone} {
     background-image: url('/assets/hero6/bg-p.svg');
     padding: 5% 0;
@@ -43,8 +44,8 @@
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
-  min-height: 100vh; /* da zauzme celu visinu */
-
+  min-height: 100vh;
+  
   @media #{$phone} {
     text-align: center;
     align-items: center;
@@ -58,7 +59,7 @@
     width: 100%;
     flex-wrap: wrap;
     gap: 1.5rem;
-
+    
     @media #{$phone} {
       flex-direction: column;
       align-items: center;
@@ -74,7 +75,7 @@
       -webkit-text-fill-color: transparent;
       animation: gradientText 5s ease infinite;
       flex: 1;
-
+      
       @media #{$phone} {
         font-size: 3rem;
       }
@@ -91,12 +92,12 @@
       text-decoration: none;
       transition: background-color 0.3s ease;
       white-space: nowrap;
-      align-self: center; /* sredjeno vertikalno */
-
+      align-self: center;
+      
       &:hover {
-        background-color: darken(colors.$yellow, 10%);
+        background-color: color.adjust(colors.$yellow, $lightness: -10%);
       }
-
+      
       @media #{$phone} {
         font-size: 1.7rem;
         padding: 0.5rem 1rem;
@@ -104,11 +105,22 @@
     }
   }
 
+  .mainContent {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+    align-items: center;
+    
+    @media #{$phone} {
+      flex-direction: column;
+    }
+  }
+
   p, ul {
     font-size: 1.5rem;
     line-height: 1.7;
     margin: 0;
-
+    
     @media #{$phone} {
       font-size: 1.3rem;
     }
@@ -118,10 +130,10 @@
     margin-left: 1.5rem;
     padding-left: 1rem;
     list-style-type: disc;
-
+    
     li {
       margin-bottom: 0.6rem;
-
+      
       strong {
         color: colors.$yellow;
       }
@@ -134,33 +146,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  
   @media #{$phone} {
     align-items: center;
-  }
-}
-
-.linkButton {
-  align-self: flex-start;
-  background-color: colors.$yellow;
-  color: colors.$black;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-family: 'Oswald';
-  font-weight: 600;
-  font-size: 2.5rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  margin-top: 2rem;
-
-  &:hover {
-    background-color: darken(colors.$yellow, 10%);
-  }
-
-  @media #{$phone} {
-    align-self: center;
-    font-size: 1.7rem;
-    padding: 0.5rem 1rem;
   }
 }
 
@@ -170,13 +158,191 @@
   font-size: 1.6rem;
   text-decoration: none;
   transition: color 0.3s ease;
-
+  
   &:hover {
-    color: darken(colors.$yellow, 10%);
+    color: color.adjust(colors.$yellow, $lightness: -10%);
   }
-
+  
   @media #{$phone} {
     font-size: 1.3rem;
   }
 }
 
+// Gallery stilovi - dark theme
+.gallery {
+  position: relative;
+  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+  width: 40%;
+  height: 400px;
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 15px 12px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:hover {
+    box-shadow: 
+      0 30px 60px rgba(0, 0, 0, 0.4),
+      0 20px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .imageWrapper {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    box-sizing: border-box;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      right: 0.5rem;
+      bottom: 0.5rem;
+      border-radius: 15px;
+      background: linear-gradient(45deg, 
+        rgba(colors.$yellow, 0.1) 0%, 
+        rgba(colors.$yellow, 0.05) 50%, 
+        transparent 100%);
+      pointer-events: none;
+    }
+  }
+
+  .image {
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    display: block;
+    box-shadow: 
+      0 15px 35px rgba(0, 0, 0, 0.3),
+      0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    
+    &.fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    &.fade-in {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .controls {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    z-index: 10;
+    pointer-events: none;
+
+    button {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: colors.$white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      pointer-events: auto;
+      
+      &:hover {
+        color: colors.$yellow;
+        background: rgba(0, 0, 0, 0.9);
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(colors.$yellow, 0.3);
+        border-color: rgba(colors.$yellow, 0.5);
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+  }
+
+  @media #{$phone} {
+    width: 100%;
+    height: 300px;
+    margin-top: 1rem;
+
+    .controls {
+      display: none;
+    }
+    
+    .imageWrapper {
+      padding: 0.5rem;
+    }
+    
+    .image {
+      max-width: 100%;
+      max-height: 100%;
+      
+      &:hover {
+        transform: none;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+                    0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+// Fade animacije
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

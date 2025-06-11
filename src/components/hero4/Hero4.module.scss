@@ -1,5 +1,15 @@
+@use 'sass:color';
 @use '../../utils/colors.scss' as colors;
 @use '../../utils/mediaqueries.scss' as *;
+
+@keyframes gradientText {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
 
 .wrapper {
   width: 100%;
@@ -14,16 +24,15 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 4% 0;
-
   @media #{$phone} {
-    background-image:url('/assets/hero4/bg-p.svg');
+    background-image: url('/assets/hero4/bg-p.svg');
     justify-content: center;
     padding: 5% 0;
   }
 }
 
 .content {
-  position:relative;
+  position: relative;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 3%;
   margin-left: 4%;
@@ -35,45 +44,51 @@
   flex-direction: column;
   gap: 1.2rem;
   max-width: 900px;
-
+  
   h1 {
     font-size: 4rem;
     margin: 0;
-    text-align: center;
+    background: linear-gradient(270deg, colors.$yellow, colors.$white, colors.$yellow);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 5s ease infinite;
+    flex: 1;
+    @media #{$phone} {
+      font-size: 3rem;
+    }
   }
-
+  
   p {
     font-size: 1.5rem;
     line-height: 1.7;
     margin: 0;
   }
-
+  
   ul {
     margin-left: 1.5rem;
     padding-left: 1rem;
-
     li {
       font-size: 1.5rem;
       line-height: 1.6;
       margin-bottom: 0.6rem;
-
       strong {
         color: colors.$yellow;
       }
     }
   }
-
+  
   @media #{$phone} {
     h1 {
       font-size: 3rem;
     }
-
     p,
     ul li {
       font-size: 1.5rem;
     }
   }
 }
+
 .linkButton {
   position: absolute;
   bottom: 20px;
@@ -82,23 +97,22 @@
   color: colors.$black;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
-  font-family:'Oswald';
-  font-weight:600;
-  font-size:3rem;
+  font-family: 'Oswald';
+  font-weight: 600;
+  font-size: 3rem;
   text-decoration: none;
   transition: background-color 0.3s ease;
   z-index: 10;
-
+  
   &:hover {
-    background-color: darken(colors.$yellow, 10%);
+    background-color: color.scale(colors.$yellow, $lightness: -10%);
   }
-
+  
   @media #{$phone} {
     position: static;
-    align-self: center; // centriraj dugme u koloni
+    align-self: center;
     margin-top: 2rem;
     font-size: 1.7rem;
     padding: 0.5rem 1rem;
   }
 }
-
