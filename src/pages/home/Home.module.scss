@@ -8,7 +8,7 @@ $gold-dark: #a86f18;
 $charcoal: #181816;
 
 @mixin container {
-  width: min(1200px, calc(100% - 2rem));
+  width: min(1220px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
@@ -19,13 +19,14 @@ $charcoal: #181816;
 
 .hero {
   position: relative;
-  min-height: min(820px, calc(94svh - 74px));
-  padding: clamp(4.5rem, 8vw, 8rem) 0 clamp(4rem, 7vw, 7rem);
+  min-height: calc(100svh - 74px);
+  padding: clamp(5rem, 8vw, 8.25rem) 0 clamp(5.5rem, 8.5vw, 8.75rem);
   background:
     linear-gradient(90deg, rgba(215, 162, 58, 0.12) 1px, transparent 1px),
-    radial-gradient(circle at 82% 18%, rgba(215, 162, 58, 0.16), transparent 24rem),
+    radial-gradient(circle at 76% 24%, rgba(215, 162, 58, 0.24), transparent 28rem),
+    radial-gradient(circle at 46% 52%, rgba(248, 244, 234, 0.045), transparent 26rem),
     linear-gradient(180deg, #121211 0%, #1f1f1d 100%);
-  background-size: 96px 100%, auto, auto;
+  background-size: 96px 100%, auto, auto, auto;
   color: $paper;
 
   > * {
@@ -45,10 +46,11 @@ $charcoal: #181816;
 
 .heroInner {
   @include container;
+  min-height: calc(100svh - 74px - clamp(5rem, 8vw, 8.25rem) - clamp(5.5rem, 8.5vw, 8.75rem));
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(400px, 0.7fr);
-  gap: clamp(2.5rem, 5.4vw, 5.75rem);
-  align-items: end;
+  grid-template-columns: minmax(0, 0.94fr) minmax(430px, 0.72fr);
+  gap: clamp(1.5rem, 3.4vw, 3.75rem);
+  align-items: center;
 }
 
 .heroCopy {
@@ -58,10 +60,10 @@ $charcoal: #181816;
   max-width: 860px;
 
   h1 {
-    max-width: 13.5ch;
+    max-width: 13.8ch;
     margin: 0;
     color: $paper;
-    font-size: clamp(3.15rem, 5.45vw, 5.55rem);
+    font-size: clamp(3.55rem, 5.95vw, 6.15rem);
     line-height: 1.02;
     letter-spacing: 0;
   }
@@ -77,18 +79,18 @@ $charcoal: #181816;
 }
 
 .lead {
-  max-width: 46rem;
-  margin: 1.6rem 0 0;
+  max-width: 49rem;
+  margin: 1.8rem 0 0;
   color: rgba(248, 244, 234, 0.72);
-  font-size: clamp(1.16rem, 1.7vw, 1.42rem);
-  line-height: 1.6;
+  font-size: clamp(1.26rem, 1.8vw, 1.55rem);
+  line-height: 1.62;
 }
 
 .heroActions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2.4rem;
+  gap: 1.2rem;
+  margin-top: 2.8rem;
 }
 
 .primaryAction,
@@ -97,10 +99,10 @@ $charcoal: #181816;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
-  min-height: 54px;
+  gap: 0.72rem;
+  min-height: 60px;
   border-radius: 6px;
-  font-size: 0.98rem;
+  font-size: 1.06rem;
   font-weight: 800;
   text-decoration: none;
 }
@@ -120,12 +122,12 @@ $charcoal: #181816;
 }
 
 .primaryAction {
-  padding: 0 1.35rem;
+  padding: 0 1.65rem;
   text-transform: uppercase;
 }
 
 .secondaryAction {
-  padding: 0 0.55rem;
+  padding: 0 0.65rem;
   color: $paper;
   text-transform: uppercase;
 
@@ -137,21 +139,23 @@ $charcoal: #181816;
 
 .heroDetails {
   display: grid;
-  gap: 1.75rem;
-  padding: clamp(1.45rem, 3.2vw, 2rem);
+  justify-self: end;
+  width: min(100%, 510px);
+  gap: 2.05rem;
+  padding: clamp(1.9rem, 3.4vw, 2.5rem);
   border: 1px solid rgba(248, 244, 234, 0.12);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.035);
-  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.24);
 }
 
 .routeLine {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 1rem;
+  gap: 1.15rem;
   color: $paper;
-  font-size: clamp(0.88rem, 1vw, 1rem);
+  font-size: clamp(1rem, 1.05vw, 1.12rem);
   font-weight: 850;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -188,11 +192,11 @@ $charcoal: #181816;
 .detailGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.15rem;
+  gap: 1.35rem;
 
   div {
     min-width: 0;
-    padding-top: 1.15rem;
+    padding-top: 1.35rem;
     border-top: 1px solid rgba(248, 244, 234, 0.1);
   }
 
@@ -200,13 +204,13 @@ $charcoal: #181816;
     display: block;
     margin-bottom: 0.36rem;
     color: rgba(248, 244, 234, 0.52);
-    font-size: 0.86rem;
+    font-size: 0.94rem;
   }
 
   strong {
     display: block;
     color: $paper;
-    font-size: clamp(1.14rem, 1.65vw, 1.35rem);
+    font-size: clamp(1.28rem, 1.7vw, 1.55rem);
     line-height: 1.2;
   }
 }
@@ -215,12 +219,12 @@ $charcoal: #181816;
   display: inline-flex;
   justify-self: start;
   align-items: center;
-  min-height: 44px;
-  padding: 0 0.95rem;
+  min-height: 50px;
+  padding: 0 1.15rem;
   border: 1px solid rgba(215, 162, 58, 0.36);
   border-radius: 6px;
   color: $gold;
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 800;
   text-decoration: none;
 }
@@ -540,6 +544,7 @@ $charcoal: #181816;
   }
 
   .heroInner {
+    min-height: 0;
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
@@ -554,8 +559,10 @@ $charcoal: #181816;
   }
 
   .heroDetails {
+    justify-self: stretch;
     width: 100%;
     padding: 1.2rem;
+    gap: 1.4rem;
   }
 
   .section {
@@ -600,6 +607,13 @@ $charcoal: #181816;
 
   .lead {
     font-size: 1.02rem;
+  }
+
+  .primaryAction,
+  .secondaryAction,
+  .phoneAction {
+    min-height: 54px;
+    font-size: 0.94rem;
   }
 
   .heroActions {
