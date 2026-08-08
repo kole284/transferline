@@ -73,32 +73,41 @@ function Home() {
             <p className={styles.eyebrow}>Transferline 019</p>
             <h1>Prevoz putnika između Zaječara i Beograda.</h1>
             <p className={styles.lead}>
-              Redovne vožnje, privatni transferi i pouzdan prevoz uz jednostavnu rezervaciju
-              pozivom.
+              Redovne vožnje, privatni i poslovni transferi uz jednostavnu rezervaciju.
             </p>
             <div className={styles.heroActions}>
               <a className={styles.primaryAction} href={PHONE_HREF}>
                 <FiPhone aria-hidden="true" />
                 Rezerviši vožnju
+                <FiArrowRight aria-hidden="true" />
               </a>
               <a className={styles.secondaryAction} href="/#polasci">
                 Pogledaj polaske
                 <FiArrowRight aria-hidden="true" />
               </a>
             </div>
-            <div className={styles.heroMeta} aria-label="Kratke informacije">
-              <span>Redovna relacija</span>
-              <strong>Zaječar ↔ Beograd</strong>
-            </div>
           </div>
 
-          <div className={styles.heroMedia}>
-            <img src="/assets/hero/transferline-hero.jpg" alt="Profesionalni vozač pored putničkog vozila" />
-            <div className={styles.mediaPanel} aria-label="Najčešći polasci">
-              <span>Pon–Pet</span>
-              <strong>05:30 / 14:00</strong>
+          <aside className={styles.heroDetails} aria-label="Detalji relacije">
+            <div className={styles.routeLine}>
+              <span>Zaječar</span>
+              <i aria-hidden="true" />
+              <span>Beograd</span>
             </div>
-          </div>
+            <div className={styles.detailGrid}>
+              <div>
+                <span>Redovna relacija</span>
+                <strong>Zaječar ↔ Beograd</strong>
+              </div>
+              <div>
+                <span>Pon–Pet</span>
+                <strong>05:30 / 14:00</strong>
+              </div>
+            </div>
+            <a className={styles.heroPhone} href={PHONE_HREF}>
+              {PHONE_DISPLAY}
+            </a>
+          </aside>
         </div>
       </section>
 
