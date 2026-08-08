@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { FiArrowRight, FiMenu, FiX } from 'react-icons/fi';
 import styles from './Burgermenu.module.scss';
-import { NAV_LINKS } from '../../constants/routes';
+import { NAV_LINKS, PHONE_HREF } from '../../constants/routes';
 
 function Burgermenu() {
   const [open, setOpen] = useState(false);
@@ -11,43 +11,38 @@ function Burgermenu() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      {/* Burger ikona */}
-      <div
-        className={styles.burgermenu}
+    <header className={styles.wrapper}>
+      <a className={styles.logo} href="/#pocetna" onClick={() => setOpen(false)} aria-label="Transferline 019 početna">
+        <img src="/logo.png" alt="" />
+        <span>Transferline 019</span>
+      </a>
+      <button
+        className={styles.menuButton}
+        type="button"
         onClick={toggleMenu}
-        style={{ display: open ? 'none' : 'flex' }}
+        aria-label={open ? 'Zatvori meni' : 'Otvori meni'}
+        aria-expanded={open}
       >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        {open ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
+      </button>
 
-      {/* Overlay meni */}
       <nav className={`${styles.navbar} ${open ? styles.open : ''}`}>
-        <div className={styles.logo}>
-          <img src="/logo.png" alt="Logo" />
-        </div>
-
-        <button className={styles.closeButton} onClick={toggleMenu}>×</button>
-
         <ul>
           {NAV_LINKS.map(({ path, label }) => (
             <li key={path}>
-              <NavLink
-                to={path}
-                onClick={toggleMenu}
-                className={({ isActive }) => (isActive ? styles.active : '')}
-              >
+              <a href={path} onClick={toggleMenu}>
                 {label}
-              </NavLink>
+              </a>
             </li>
           ))}
         </ul>
+        <a className={styles.action} href={PHONE_HREF} onClick={toggleMenu}>
+          Rezerviši
+          <FiArrowRight aria-hidden="true" />
+        </a>
       </nav>
-    </div>
+    </header>
   );
 }
 
 export default Burgermenu;
-

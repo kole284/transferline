@@ -1,33 +1,28 @@
-import { NavLink } from 'react-router-dom';
+import { FiArrowRight } from 'react-icons/fi';
 import styles from './Navbar.module.scss';
-import { NAV_LINKS } from '../../constants/routes';
+import { NAV_LINKS, PHONE_HREF } from '../../constants/routes';
 
-type Props = {
-  hidden: boolean;
-};
-
-function Navbar({ hidden }: Props) {
+function Navbar() {
   return (
-    <nav className={`${styles.navbar} ${hidden ? styles.hidden : ''}`}>
-      <div className={styles.logo}>
-        <img src="/logo.png" alt="Logo" />
-      </div>
+    <nav className={styles.navbar} aria-label="Glavna navigacija">
+      <a className={styles.logo} href="/#pocetna" aria-label="Transferline 019 početna">
+        <img src="/logo.png" alt="" />
+        <span>Transferline 019</span>
+      </a>
       <ul className={styles.navList}>
         {NAV_LINKS.map(({ path, label }) => (
           <li key={path}>
-            <NavLink
-              to={path}
-              className={({ isActive }) => (isActive ? styles.active : '')}
-            >
-              {label}
-            </NavLink>
+            <a href={path}>{label}</a>
           </li>
         ))}
       </ul>
+      <a className={styles.action} href={PHONE_HREF}>
+        Rezerviši
+        <FiArrowRight aria-hidden="true" />
+      </a>
     </nav>
   );
 }
 
 export default Navbar;
-
 

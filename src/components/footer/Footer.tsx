@@ -1,48 +1,21 @@
-import { useEffect, useState } from 'react';
+import { PHONE_DISPLAY, PHONE_HREF } from '../../constants/routes';
 import styles from './Footer.module.scss';
 
 function Footer() {
-  const [showPopup, setShowPopup] = useState(false);
-
-  // Prikaži info u konzoli prilikom mountovanja komponente
-  useEffect(() => {
-    console.log('Website made by:');
-    console.log('kole284: https://github.com/kole284');
-    console.log('KaluMen: https://github.com/KaluMen');
-  }, []);
-
   return (
-    <>
-      <footer className={styles.footer}>
-        <div className={styles.container}>
-          © Transferline 2025
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <a className={styles.brand} href="/#pocetna" aria-label="Transferline 019 početna">
+          <img src="/logo.png" alt="" />
+          <span>Transferline 019</span>
+        </a>
+        <div className={styles.info}>
+          <span>Zaječar ↔ Beograd</span>
+          <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
         </div>
-        <button className={styles.popupButton} onClick={() => setShowPopup(true)}>
-        </button>
-      </footer>
-
-      {showPopup && (
-        <div className={styles.popupOverlay} onClick={() => setShowPopup(false)}>
-          <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
-            <h3>Icons by</h3>
-            <p>Eucalyp</p>
-            <p>muhammed_usman</p>
-            <p>Laisa Islam An</p>
-            <p>Md Tan Uirul</p>
-            <p>Bzzrincantation</p>
-            <p>Freepik</p>
-            <p>
-              <a href="https://www.freepik.com" target="_blank" rel="noopener noreferrer">
-                Flaticon
-              </a>
-            </p>
-            <button onClick={() => setShowPopup(false)}>Zatvori</button>
-          </div>
-        </div>
-      )}
-    </>
+      </div>
+    </footer>
   );
 }
 
 export default Footer;
-

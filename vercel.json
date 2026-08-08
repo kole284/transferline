@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "source": "/about",
+      "destination": "/#o-nama",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/#usluge",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
