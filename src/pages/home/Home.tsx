@@ -1,12 +1,12 @@
 import {
   FiArrowRight,
   FiBriefcase,
-  FiClock,
   FiGlobe,
   FiMapPin,
   FiPackage,
   FiPhone,
   FiSend,
+  FiShield,
   FiUsers,
 } from 'react-icons/fi';
 import { PHONE_DISPLAY, PHONE_HREF } from '../../constants/routes';
@@ -64,40 +64,40 @@ const services = [
   },
 ];
 
-const gallery = [
-  { src: '/assets/hero6/image1.jpg', alt: 'Crno putničko vozilo u garaži' },
-  { src: '/assets/hero6/image2.jpg', alt: 'Svetlo porodično vozilo na putu' },
-  { src: '/assets/hero6/image3.jpg', alt: 'Putničko vozilo za transfer' },
-  { src: '/assets/hero6/image4.jpg', alt: 'Putničko vozilo spolja' },
-];
-
 function Home() {
   return (
     <>
       <section className={styles.hero} id="pocetna">
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Transferline 019</p>
-          <h1>Prevoz putnika između Zaječara i Beograda.</h1>
-          <p className={styles.lead}>
-            Redovne relacije, poslovni prevoz, aerodromski transferi i vožnje po dogovoru.
-          </p>
-          <div className={styles.heroActions}>
-            <a className={styles.primaryAction} href={PHONE_HREF}>
-              <FiPhone aria-hidden="true" />
-              Rezerviši vožnju
-            </a>
-            <a className={styles.secondaryAction} href="/#polasci">
-              Pogledaj polaske
-              <FiArrowRight aria-hidden="true" />
-            </a>
+        <div className={styles.heroInner}>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>Transferline 019</p>
+            <h1>Prevoz putnika između Zaječara i Beograda.</h1>
+            <p className={styles.lead}>
+              Redovne vožnje, privatni transferi i pouzdan prevoz uz jednostavnu rezervaciju
+              pozivom.
+            </p>
+            <div className={styles.heroActions}>
+              <a className={styles.primaryAction} href={PHONE_HREF}>
+                <FiPhone aria-hidden="true" />
+                Rezerviši vožnju
+              </a>
+              <a className={styles.secondaryAction} href="/#polasci">
+                Pogledaj polaske
+                <FiArrowRight aria-hidden="true" />
+              </a>
+            </div>
+            <div className={styles.heroMeta} aria-label="Kratke informacije">
+              <span>Redovna relacija</span>
+              <strong>Zaječar ↔ Beograd</strong>
+            </div>
           </div>
-        </div>
 
-        <div className={styles.heroMedia}>
-          <img src="/assets/hero6/image1.jpg" alt="Putničko vozilo za transfer" />
-          <div className={styles.mediaPanel} aria-label="Kratke informacije">
-            <span>Zaječar ↔ Beograd</span>
-            <strong>Pon–Pet 05:30 / 14:00</strong>
+          <div className={styles.heroMedia}>
+            <img src="/assets/hero/transferline-hero.jpg" alt="Profesionalni vozač pored putničkog vozila" />
+            <div className={styles.mediaPanel} aria-label="Najčešći polasci">
+              <span>Pon–Pet</span>
+              <strong>05:30 / 14:00</strong>
+            </div>
           </div>
         </div>
       </section>
@@ -111,8 +111,13 @@ function Home() {
           {departures.map((departure) => (
             <article className={styles.timetable} key={departure.route}>
               <div className={styles.routeTitle}>
-                <FiMapPin aria-hidden="true" />
-                <h3>{departure.route}</h3>
+                <span className={styles.routeIcon}>
+                  <FiMapPin aria-hidden="true" />
+                </span>
+                <div>
+                  <span>Relacija</span>
+                  <h3>{departure.route}</h3>
+                </div>
               </div>
               <div className={styles.rows}>
                 {departure.rows.map((row) => (
@@ -126,9 +131,17 @@ function Home() {
           ))}
         </div>
         <div className={styles.scheduleCta}>
-          <FiClock aria-hidden="true" />
-          <span>Za mesto u vozilu pozovite</span>
-          <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
+          <div className={styles.scheduleCtaIcon}>
+            <FiShield aria-hidden="true" />
+          </div>
+          <div>
+            <strong>Rezervacija mesta</strong>
+            <span>Za mesto u vozilu pozovite direktno.</span>
+          </div>
+          <a href={PHONE_HREF}>
+            <FiPhone aria-hidden="true" />
+            {PHONE_DISPLAY}
+          </a>
         </div>
       </section>
 
@@ -167,25 +180,6 @@ function Home() {
           <span>Redovna relacija</span>
           <strong>Zaječar ↔ Beograd</strong>
           <p>Fiksni termini tokom radne nedelje, petkom i nedeljom.</p>
-        </div>
-      </section>
-
-      <section className={styles.section} id="vozila">
-        <div className={styles.sectionHeader}>
-          <p className={styles.eyebrow}>Vozila</p>
-          <h2>Fotografije vozila.</h2>
-        </div>
-        <div className={styles.gallery}>
-          <figure className={styles.featuredImage}>
-            <img src={gallery[0].src} alt={gallery[0].alt} loading="lazy" />
-          </figure>
-          <div className={styles.galleryRail}>
-            {gallery.slice(1).map((image) => (
-              <figure key={image.src}>
-                <img src={image.src} alt={image.alt} loading="lazy" />
-              </figure>
-            ))}
-          </div>
         </div>
       </section>
 

@@ -5,6 +5,7 @@ $surface: #ffffff;
 $line: rgba(21, 21, 21, 0.12);
 $gold: #d7a23a;
 $gold-dark: #a86f18;
+$charcoal: #181816;
 
 @mixin container {
   width: min(1180px, calc(100% - 2rem));
@@ -17,30 +18,39 @@ $gold-dark: #a86f18;
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
+  position: relative;
   min-height: min(820px, calc(92svh - 74px));
-  padding: clamp(2rem, 5vw, 5rem) 0 clamp(2.2rem, 4vw, 4rem);
+  padding: clamp(2rem, 4vw, 4.5rem) 0 clamp(2.2rem, 5vw, 4.5rem);
   background:
-    linear-gradient(90deg, rgba(248, 244, 234, 0.98) 0%, rgba(248, 244, 234, 0.9) 43%, rgba(248, 244, 234, 0.7) 100%),
-    #f8f4ea;
+    radial-gradient(circle at 78% 12%, rgba(215, 162, 58, 0.18), transparent 30rem),
+    linear-gradient(180deg, #121211 0%, #1f1f1d 100%);
+  color: $paper;
 
   > * {
     min-width: 0;
   }
 }
 
+.heroInner {
+  @include container;
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1.14fr);
+  gap: clamp(1.75rem, 5vw, 5rem);
+  align-items: center;
+}
+
 .heroCopy {
-  width: min(560px, calc(100% - 2rem));
-  margin-left: max(1rem, calc((100vw - 1180px) / 2));
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  max-width: 600px;
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
 
   h1 {
-    max-width: 10ch;
+    max-width: 12ch;
     margin: 0;
-    color: $ink;
-    font-size: clamp(2.6rem, 6vw, 5.8rem);
+    color: $paper;
+    font-size: clamp(2.8rem, 5.8vw, 5.55rem);
     line-height: 0.98;
     letter-spacing: 0;
   }
@@ -56,9 +66,9 @@ $gold-dark: #a86f18;
 }
 
 .lead {
-  max-width: 35rem;
+  max-width: 34rem;
   margin: 1.35rem 0 0;
-  color: $muted;
+  color: rgba(248, 244, 234, 0.72);
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.6;
 }
@@ -103,36 +113,58 @@ $gold-dark: #a86f18;
 }
 
 .secondaryAction {
-  padding: 0 0.3rem;
-  color: $ink;
+  padding: 0 0.45rem;
+  color: $paper;
 
   &:hover,
   &:focus-visible {
-    color: $gold-dark;
+    color: #e2b85f;
+  }
+}
+
+.heroMeta {
+  display: inline-grid;
+  gap: 0.25rem;
+  margin-top: clamp(2.5rem, 7vw, 5rem);
+  padding-left: 1rem;
+  border-left: 2px solid $gold;
+
+  span {
+    color: rgba(248, 244, 234, 0.56);
+    font-size: 0.78rem;
+  }
+
+  strong {
+    color: $paper;
+    font-size: 1.05rem;
   }
 }
 
 .heroMedia {
   position: relative;
-  min-height: 520px;
-  align-self: stretch;
+  min-height: clamp(430px, 50vw, 630px);
+  border-radius: 10px;
   overflow: hidden;
-  background: #1d2126;
+  background: #242421;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
 
   img {
     width: 100%;
     height: 100%;
-    min-height: 520px;
+    min-height: clamp(430px, 50vw, 630px);
     object-fit: cover;
     object-position: center;
     display: block;
+    filter: saturate(0.86) contrast(1.03) brightness(0.82);
   }
 
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.28));
+    background:
+      linear-gradient(90deg, rgba(18, 18, 16, 0.38), rgba(18, 18, 16, 0.02) 45%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.42));
     pointer-events: none;
   }
 }
@@ -185,71 +217,150 @@ $gold-dark: #a86f18;
 .timetableGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: clamp(1rem, 2.4vw, 1.5rem);
 }
 
 .timetable {
-  border-top: 2px solid $ink;
-  background: $surface;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(21, 21, 21, 0.1);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.9)),
+    $surface;
+  box-shadow: 0 18px 42px rgba(28, 28, 26, 0.08);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $gold, rgba(215, 162, 58, 0.08));
+  }
 }
 
 .routeTitle {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid $line;
-
-  svg {
-    color: $gold-dark;
-  }
+  gap: 0.9rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.08);
 
   h3 {
     margin: 0;
     color: $ink;
-    font-size: 1.05rem;
+    font-size: 1.12rem;
   }
+
+  span:not(.routeIcon) {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: $gold-dark;
+    font-size: 0.72rem;
+    font-weight: 850;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+.routeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(215, 162, 58, 0.12);
+  color: $gold-dark;
 }
 
 .rows {
   display: grid;
+  padding: 0.4rem 1.25rem 1.1rem;
 }
 
 .row {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  min-height: 58px;
-  border-bottom: 1px solid $line;
+  gap: 1rem;
+  min-height: 64px;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.08);
   color: $muted;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  span {
+    font-weight: 650;
+  }
 
   strong {
     color: $ink;
-    font-size: 1.8rem;
+    font-size: clamp(1.65rem, 3vw, 2rem);
+    line-height: 1;
     font-variant-numeric: tabular-nums;
   }
 }
 
 .scheduleCta {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0.55rem;
-  margin-top: 1.2rem;
-  padding: 1rem;
-  border: 1px solid rgba(215, 162, 58, 0.36);
-  border-radius: 8px;
-  background: rgba(215, 162, 58, 0.08);
+  gap: 0.9rem;
+  margin-top: 1.35rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(215, 162, 58, 0.24);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #242421, #171716);
   color: $ink;
+  box-shadow: 0 18px 44px rgba(28, 28, 26, 0.12);
 
-  svg {
-    color: $gold-dark;
+  strong {
+    display: block;
+    color: $paper;
+    font-size: 0.98rem;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.12rem;
+    color: rgba(248, 244, 234, 0.62);
+    font-size: 0.92rem;
   }
 
   a {
-    color: $gold-dark;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0 0.9rem;
+    border-radius: 6px;
+    background: $gold;
+    color: $ink;
     font-weight: 850;
     text-decoration: none;
+    white-space: nowrap;
+  }
+}
+
+.scheduleCtaIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(215, 162, 58, 0.35);
+  border-radius: 999px;
+  color: $gold;
+
+  svg {
+    width: 19px;
+    height: 19px;
   }
 }
 
@@ -347,40 +458,6 @@ $gold-dark: #a86f18;
   }
 }
 
-.gallery {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-  gap: 0.8rem;
-}
-
-.featuredImage,
-.galleryRail figure {
-  margin: 0;
-  overflow: hidden;
-  background: #20242a;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-}
-
-.featuredImage {
-  aspect-ratio: 16 / 10;
-}
-
-.galleryRail {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 0.8rem;
-
-  figure {
-    min-height: 0;
-  }
-}
-
 .contactSection {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -424,15 +501,22 @@ $gold-dark: #a86f18;
 
 @media (max-width: 900px) {
   .hero {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
     min-height: 0;
     padding-top: 1.5rem;
+    background:
+      radial-gradient(circle at 80% 8%, rgba(215, 162, 58, 0.16), transparent 22rem),
+      linear-gradient(180deg, #151514 0%, #20201d 100%);
+  }
+
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .heroCopy {
     width: min(100% - 2rem, 680px);
     margin: 0 auto;
+    padding: 1.5rem 0 0;
 
     h1 {
       max-width: 12ch;
@@ -442,8 +526,8 @@ $gold-dark: #a86f18;
 
   .heroMedia {
     width: calc(100% - 2rem);
-    min-height: 280px;
     margin: 0 auto;
+    min-height: 280px;
 
     img {
       min-height: 280px;
@@ -458,7 +542,6 @@ $gold-dark: #a86f18;
   .timetableGrid,
   .serviceList,
   .aboutSection,
-  .gallery,
   .contactSection {
     grid-template-columns: 1fr;
   }
@@ -472,14 +555,18 @@ $gold-dark: #a86f18;
     }
   }
 
-  .galleryRail {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: none;
-  }
-
   .contactSection {
     width: min(100% - 2rem, 1180px);
     justify-items: start;
+  }
+
+  .scheduleCta {
+    grid-template-columns: auto 1fr;
+
+    a {
+      grid-column: 1 / -1;
+      width: 100%;
+    }
   }
 }
 
@@ -507,20 +594,9 @@ $gold-dark: #a86f18;
     }
   }
 
-  .scheduleCta {
-    display: grid;
-    grid-template-columns: auto 1fr;
-
-    a {
-      grid-column: 1 / -1;
-    }
-  }
-
-  .galleryRail {
-    grid-template-columns: 1fr;
-
-    figure {
-      aspect-ratio: 16 / 10;
-    }
+  .mediaPanel {
+    right: 0.8rem;
+    bottom: 0.8rem;
+    width: calc(100% - 1.6rem);
   }
 }
